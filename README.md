@@ -85,7 +85,32 @@ C언어와 같다
     HTML문서 구조를 말함,
 # 객체 생성
 참조 변수 = new 생성함수() //java, python 객체 생성과 같다
+cf) 생성하는 문법이 조금 다르다!
+```javascript
+var tv=new Object();
+tv.color="white";
+tv.price=30000;
+tv.info=function(){
+	document.write("tv색상 : "+this.color,"<br>");
+	document.write("tv가격 : "+this.price,"<br>");
+}
 
+var car={
+	color:"black",
+	price:50000,
+	info:function(){
+		document.write("tv색상 : "+this.color,"<br>");
+		document.write("tv가격 : "+this.price,"<br>");
+	}
+};
+
+
+
+document.write("<h1>tv 객체 메서드 호출</h1>");
+tv.info();
+document.write("<h1>car 객체 메서드 호출</h1>");
+car.info();
+```
   
 # confirm객체
 # location.href = "주소" //주소로 이동
