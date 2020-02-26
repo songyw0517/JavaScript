@@ -118,16 +118,85 @@ Property access [ ] : 배열로 접근
 
 문자열을 배열로 변환
 split("나눌 기준 문자") : 문자열을 파라미터를 기준으로 나누어 배열에 저장함
+
 ```
 function myFunction() {
   var str = "a,b,c,d,e,f";
   var arr = str.split(",");
   document.getElementById("demo").innerHTML = arr[0];
+  
+  >>> arr=[a,b,c,d,e,f];
 }
+```
 
 기타 문자열 메소드
 https://www.w3schools.com/jsref/jsref_obj_string.asp
 
-#
->>> arr=[a,b,c,d,e,f]; 저장
+# 숫자
+- 자바스크립트는 int, short, long, float, double등의 타입을 정하지 않는다. 
+- 항상 부동 소수점 숫자로 저장된다.
+- 소수점 아래의 0은 표시되지 않는다.
+
+# 숫자 메소드
+문자열로 변경 : toString();
+
+소수점 아래 어디까지 표현 : toExponential("자리수") ->
 ```
+var x = 9.656;
+x.toExponential(2);     // returns 9.66e+0
+x.toExponential(4);     // returns 9.6560e+0
+x.toExponential(6);     // returns 9.656000e+0
+```
+
+숫자를 문자열로 표현, 소수점 아래부터 반올림해서 보여줌 : toFixed("소수점 아래 어디까지?")
+숫자를 지정된 길이로 표현함 : toPrecision("몇자리까지 표현")
+
+변수를 숫자로 변경
+The Number() method
+The parseInt() method
+The parseFloat() method
+
+숫자 예약어
+NaN : 유효한 숫자가 아님을 나타냄, 숫자를 문자열로 나누면 출력됨
+- isNaN("변수") : NaN일경우 true 출력
+ Infinity or -Infinity : 자바스크립트가 리턴 가능한 최대, 최소 값이다. 
+MAX_VALUE : 최대값
+MIN_VALUE : 최솟값
+
+# 배열
+배열.length : 배열의 길이 반환
+배열의 마지막 값 : 배열[배열.length -1]
+배열 마지막에 추가 : 배열.push("값") | 배열[배열.length] = 값 | 배열[원하는곳] = 값
+
+함수
+Array.isArray(배열) : 배열이 배열인지 확인
+배열.toString(); : 배열을 문자열로 바꿈 (콤마도 들어간다)
+배열.join("묶을때 사용할 문자") : 배열을 문자로 묶어서 문자열로 만든다.
+배열.pop() : 배열의 마지막 값 반환 & 삭제
+배열.push("값") : 배열의 마지막에 값 추가
+배열.shift() : 배열의 첫번째 값을 반환하고, 삭제함
+배열.unshift() : 배열의 첫번째에 값을 추가함
+배열.splice(2,0,"lemon", "kiwi") : 배열 2인덱스부터 lemon과 kiwi 값을 중간에 추가한다. (0은 삭제할 요소가 없다는 뜻이다. 1이면 그 요소를 삭제하여 반환한다.)
+
+splice함수 : 배열의 중간 요소를 없앨때 유용한 함수이다.
+splice(0, 1) : 배열[0]에서부터 1개를 삭제하고 배열을 연결한다.
+배열.concat(배열2, ...) : 배열에 배열2, ...을 연결한다.
+배열.slice(1, 2) : 배열[1] ~ 배열[2]까지 선택함
+배열.sort() : 배열 정렬 // (문자열에서만 잘 작동한다.)
+배열.reverse() : 배열 반전
+
+숫자 정렬
+오름차순 sort() : points.sort(function(a, b){return a - b});
+내림차순 sort() : points.sort(function(a, b){return b - a});
+랜덤으로 sort() : points.sort(function(a, b){return 0.5 - Math.random()});
+
+배열에서 최댓값 찾기
+Math.max.apply(null, arr);
+
+배열에서 최솟값 찾기
+Math.min.apply(null, arr);
+
+배열의 각각의 값에 함수적용
+배열.forEach(함수이름);
+
+
