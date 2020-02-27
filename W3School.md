@@ -210,4 +210,120 @@ Math.min.apply(null, arr);
 배열.find(함수이름) : 조건을 통과한 첫번째 원소의 값을 반환
 배열.findIndex(함수이름) : 조건을 통과한 첫번째 원소의 위치 반환 
 
+# Date()
+Date객체 생성
+- new Date()
+- new Date(year, month, day, hours, minutes, seconds, milliseconds)
+- new Date(milliseconds)
+- new Date(date string)
 
+Date 메소드
+- Date().toString(); // Thu Feb 27 2020 16:35:16 GMT+0900 (대한민국 표준시)
+- Date().toUTCString(); // Thu, 27 Feb 2020 07:35:28 GMT
+- Date().toDateString(): // Thu Feb 27 2020
+
+Date input
+2015-03-25 : ISO 형식 // 만약 03으로 안쓰고 3으로쓰면 오류날 수 있다.
+03/25/2015 : Short Date 형식
+Mar 25 2015 or "25 Mar 2015" : Long Date 형식
+
+Date Get Method
+- getFullYear() : 연도 4자리 반환
+- getMonth() : 월을 0 ~ 11로 반환, cf)12가 없다., 월이름이 적혀있는 배열을 이용하여 이름으로 반환할 수 있다.
+- getDate() : 날짜를 1~31로 반환
+- getHours() : 시간을 0~23으로 반환
+- getMinutes() : 분을 0~59로 반환
+- getSeconds() : 초를 0~59로 반환
+- getMilliseconds() : 밀리초를 0~999로 반환
+- getTime() : 1970년1월1일 이후의 밀리초를 반환
+- getDay() : 요일을 0~6으로 반환
+- Date.now() : Date객체 생성할 필요없이, Date().getTime과 같음
+
+Date Set Method
+- setFullYear()
+- setMonth()
+- setDate()
+- setHours()
+- setMinutes()
+- setSeconds()
+기타 날짜 메소드
+https://www.w3schools.com/jsref/jsref_obj_date.asp
+
+# Math
+
+Math.round(x) : x의 값을 정수로 반올림
+Math.ceil(x) : x의 값을 정수로 올림
+Math.floor(x) : x의 값을 정수로 내림
+Math.pow(x, y) : x의 y제곱 값
+Math.sqrt(x) : x의 제곱근 값
+Math.abs(x) : x의 절댓값
+
+삼각 함수
+```
+들어가는 x값은 각도 값이 아니다!
+각도로 바꾸기 위해서는 (X * Math.PI /180)을 해줘야 한다.
+```
+Math.sin(x) : x의 sin값
+Math.cos(x) : x의 cos값
+Math.tan(x) : x의 tan값
+
+Math.min(1,2,3,4,5,...) : 들어간 값 중 최솟값을 찾음
+Math.max(1,2,3,4,5,...) : 들어간 값 중 최댓값을 찾음
+Math.random() : 0과 1 사이의 난수를 반환합니다.
+
+기타 수학 함수 : https://www.w3schools.com/jsref/jsref_obj_math.asp
+
+# 반복문
+C와 비슷하다. 다른 점만 적을 것이다.
+
+- for()문의 초기값에 여러값을 정의할 수 있다.
+```ex) 
+for (i = 0, len = cars.length, text = ""; i < len; i++) {
+  text += cars[i] + "<br>";
+}
+```
+
+- for/in : 객체의 속성 수 만큼 반복한다.
+```
+var person = {fname:"John", lname:"Doe", age:25}; 
+var x;
+for (x in person) {
+  txt += person[x] + " ";
+}
+```
+
+- for/of : 모르겠음;
+
+while
+0또는 undefined가 되면 종료
+++) 배열의 길이가 넘어가면 undefined타입이다.
+
+break, continue
+
+
+# 비트 연산자
+&	AND	Sets each bit to 1 if both bits are 1
+|	OR	Sets each bit to 1 if one of two bits is 1
+^	XOR	Sets each bit to 1 if only one of two bits is 1
+~	NOT	Inverts all the bits
+<<	Zero fill left shift	Shifts left by pushing zeros in from the right and let the leftmost bits fall off
+>>	Signed right shift	Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+>>>	Zero fill right shift	Shifts right by pushing zeros in from the left, and let the rightmost bits fall off
+
+
+# 정규식
+========
+검색 패턴을 형성하는 일련의 문자
+검색 패턴은 텍스트를 찾거나 텍스트를 바꾸는 연산이 될 수 있음
+```
+웹페이지에서 원하는 내용을 추출, 확인, 치환 하는데 사용된다.
+```
+
+
+생성
+- var reg = /[찾고자하는 것]/[수정자]
+- var reg = new RegExp('찾고자 하는것');
+
+메소드
+- reg객체.exec('찾으려는 곳')  : reg객체에 저장된 값을 찾는다.
+- 
