@@ -27,6 +27,7 @@ document.getElementById("myImg").src="pic_bulcon.gif"; // html요소중 id값이
 
 # 함수 (function)
 =================
+## 1.
 function [함수이름] ([파라미터]){
   [함수 내용]
 }
@@ -34,6 +35,24 @@ function [함수이름] ([파라미터]){
 function myFunction() {
   document.getElementById("demo").innerHTML = "Paragraph changed.";
 }
+
+## 2.
+[변수 이름] = ([인자]) => {
+   [함수 내용]
+}
+
+hello = () => {
+  return "Hello World!";
+}
+
+로 더욱 간단하게 할 수 있다., 한줄일 경우 중괄호 안써도 된다.
+
+## 3.
+var [함수 이름] = new Function(인자, 인자, 반환 값)
+var myFunction = new Function("a", "b", "return a * b");
+
+var [함수이름] = function (a, b) {return a * b};
+var x = myFunction(4, 3);
 
 - 함수이름을 출력하면, 함수내용이 출력된다.
 ```
@@ -45,6 +64,16 @@ document.getElementById("demo").innerHTML = toCelsius;
 >>> function toCelsius(f) { return (5/9) * (f-32); } 출력됨
 ```
 
+- 함수를 리턴하면(return this;) object window가 반환되며, use strict;를 사용할 경우, undefined가 반환된다.
+
+- 함수 자동 호출
+(function () {
+  document.getElementById("demo").innerHTML = "Hello! I called myself";
+})();
+
+
+
+
 # 객체
 var person = {name:"song", age:"??", height:"??"};
 cf) = 이 아니다. : 임
@@ -55,6 +84,10 @@ cf) = 이 아니다. : 임
 <element event='some JavaScript'>
 -> <button onclick="함수이름 or 함수 내용">
 여러가지 이벤트 : https://www.w3schools.com/jsref/dom_obj_event.asp
+
+# 이벤트 리스너
+
+
 
 # 문자열 함수
 var text="This is Practice Text."
@@ -339,9 +372,13 @@ break, continue
 () : 그룹
 \w : word (A~Z, a~z, 0~9 중 문자 하나), 한글은 안된다.
 \s : space, 공백
+\b : 첫번째 단어 or 마지막 단어를 찾을때 씀, ex) \bLO : LO가 마지막에 나온것을 찾음, LO\b : LO가 처음에 나온것을 찾음
+
 
 수량자
 + : 하나 이상인 것을 모두 선택함. ex) /\w+/면 하나 이상의 문자를 찾음
+*
+?
 
 ex) /(\w+)\s(\w+)/ 이면, "adsFckj fdKj" 를 선택한다는 뜻이다.
 
@@ -355,3 +392,212 @@ g (global) : 찾는 문자를 모두 찾음 (중복되면 배열에 계속 넣�
 ig : i + g
 
 캡처
+
+
+# Error (try, catch, throw, finally)
+try : 코드 블록에 오류가 있는지 테스트함
+catch : 오류처리
+throw : 사용자 정의 오류만들 수 있음
+finally : try부분이 종료된 후 실행하는 코드
+
+전체적으로 try-catch-finally로 예외를 처리한다.
+1. try에서는 코드를 실행하는데, 예외가 발생하면 catch문으로 예외를 처리한다.
+2. try에서 예외 발생시, throw로 사용자 지정 오류 메시지를 만들 수 있다. 
+try{
+...
+if(x==0) // 예외인경우
+  throw "x=0";
+}
+catch(err)
+{
+  message.innerHTML = "Input is" + err; // err은 throw값을 말한다.
+}
+
+
+
+```
+JAVASCRIPT
+try {
+	/**
+	 * 정상이라면 이 코드는 아무런 문제없이 블록의 시작부터 끝까지 실행된다.
+	 * 하지만 경우에 따라 예외가 발생할 수 있다.
+	 * 예외는 throw 문에 의해 직접적으로 발생할 수도 있고,
+	 * 또는 예외를 발생시키는 메서드의 호출에 의해 발생할 수도 있다.
+	 */
+} catch (e) {
+	/**
+	 * 이 블록 내부의 문장들은 오직 try 블록에서 예외가 발생할 경우에만 실행된다.
+	 * 이 문장들에선 지역 변수 e를 사용하여 Error 객체 또는 앞의 throw 다른 값을 참조할 수 있다.
+	 * 이 블록에서는 어떻게든 그 예외를 처리할 수도 있고,
+	 * 그냥 아무것도 하지 않고 예외를 무시할 수도 있고,
+	 * 아니면 throw 를 사용해서 예외를 다시 발생시킬 수도 있다.
+	 */
+} finally {
+	/**
+	 * 이 블록에는 try 블록에서 일어난 일에 관계없이 무조건 실행될 코드가 위치한다.
+	 * 이 코드는 try 블록이 어떻게든 종료되면 실행된다.
+	 * try 블록이 종료되는 상황은 다음과 같다.
+	 *   1) 정상적으로 블록의 끝에 도달했을 때
+	 *   2) break, continue 또는 return 문에 의해서
+	 *   3) 예외가 발생했지만 catch 절에서 처리했을 때
+	 *   4) 예외가 발생했고 그것이 잡히지 않은 채 퍼져나갈 때
+	 */
+}
+
+
+출처: https://webclub.tistory.com/71 [Web Club]
+```
+
+use strict : 엄격모드?로 실행되어야 함을 나타냄 (문법이 제약적이다)
+- 왜 사용하는가? 보안성, 안좋은 코드를 바로 잡음
+
+다른 객체의 메소드를 또다른 객체에 적용 시킬수 있다. call(), apply()
+```
+var person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+var person2 = {
+  firstName:"John",
+  lastName: "Doe",
+}
+person1.fullName.call(person2);  // Will return "John Doe"
+```
+
+# 클래스
+class를 작성함, constructor()메소드 작성해야한다. 메소드는 "메소드 이름"()으로 시작한다.
+static 메소드 : 프로토타입이 아닌 클래스 자체에 정의되어있음을 나타낸다.
+
+# javascript Tip
+- new, ==, eval() 을 피해라
+- 지역변수를 사용하라
+- 변수는 상단에 정의
+Use {} instead of new Object()
+Use "" instead of new String()
+Use 0 instead of new Number()
+Use false instead of new Boolean()
+Use [] instead of new Array()
+Use /()/ instead of new RegExp()
+Use function (){} instead of new Function()
+
+# 나쁜 코드
+var i;
+for (i = 0; i < arr.length; i++) { 
+# 좋은 코드
+var i;
+var l = arr.length;
+for (i = 0; i < l; i++) {
+
+DOM의 접근 줄이기
+var obj;
+obj = document.getElementById("demo"); // 한번 접근한 걸로 족하다.
+obj.innerHTML = "Hello";
+
+# Form API (DOM Method)
+checkValidity()	: 입력값이 유효한 값을 가졌는지 참, 거짓으로 반환
+setCustomValidity()	Sets the validationMessage property of an input element.
+validity : Contains boolean properties related to the validity of an input element.
+  customError	Set to true, if a custom validity message is set.
+  patternMismatch	Set to true, if an element's value does not match its pattern attribute.
+  rangeOverflow	Set to true, if an element's value is greater than its max attribute.
+  rangeUnderflow	Set to true, if an element's value is less than its min attribute.
+  stepMismatch	Set to true, if an element's value is invalid per its step attribute.
+  tooLong	Set to true, if an element's value exceeds its maxLength attribute.
+  typeMismatch	Set to true, if an element's value is invalid per its type attribute.
+  valueMissing	Set to true, if an element (with a required attribute) has no value.
+  valid	Set to true, if an element's value is valid.
+validationMessage : Contains the message a browser will display when the validity is false.
+willValidate : Indicates if an input element will be validated.
+
+
+# JavaScript Objects
+====================
+- 불, 숫자, 문자열은 new를 사용할경우 객체가 될 수 있다.
+- 날짜, 수학, 정규식, 배열, 함수, 객체는 객체이다.
+ 
+ Primitive : 기본 타입
+ string, number, boolean, null, undefined이 있다.
+
+set / get 을 사용할 수 있다.
+```
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  language : "",
+  set lang(lang) {
+    this.language = lang.toUpperCase();
+  }
+};
+
+// Set an object property using a setter:
+person.lang = "en";
+
+// Display data from the object:
+document.getElementById("demo").innerHTML = person.language;
+```
+Prototype : Date, Array, Person 등 이 있고, 객체와 같이 속성, 메소드가 있음
+
+
+<hr>
+# HTML DOM
+JavaScript는 페이지의 모든 HTML 요소를 변경할 수 있습니다
+JavaScript는 페이지의 모든 HTML 속성을 변경할 수 있습니다
+JavaScript는 페이지의 모든 CSS 스타일을 변경할 수 있습니다
+JavaScript는 기존 HTML 요소 및 속성을 제거 할 수 있습니다
+JavaScript는 새로운 HTML 요소 및 속성을 추가 할 수 있습니다
+JavaScript는 페이지의 모든 기존 HTML 이벤트에 반응 할 수 있습니다
+JavaScript는 페이지에서 새로운 HTML 이벤트를 만들 수 있습니다
+
+DOM 메소드
+- 요소 찾기
+document.getElementById : 태그를 아이디로 찾음
+document.getElementsByTagName(name) : 태그를 태그 네임(div, p, span, ...)으로 찾음
+document.getElementsByClassName(name) : 클래스 이름을 찾음
+- 수정
+element.innerHTML : 태그 안의 내용 변경
+element.attribute = new value : 속성 변경
+element.style.property = new style : 스타일 변경
+element.setAttribute(attribute, value) : 속성 변경
+- 생성 삭제
+document.createElement(element)	: 새로운 HTML요소 생성
+document.removeChild(element)	: HTML요소 삭제
+document.appendChild(element)	: HTML 요소 추가
+document.replaceChild(new, old) :	HTML 요소 대체
+document.write(text)	: Write into the HTML output stream
+- 이벤트핸들러
+document.getElementById(id).onclick = function(){code}
+
+[ HMTL 요소 찾기
+document.anchors	Returns all <a> elements that have a name attribute	1
+document.applets	Returns all <applet> elements (Deprecated in HTML5)	1
+document.baseURI	Returns the absolute base URI of the document	3
+document.body	Returns the <body> element	1
+document.cookie	Returns the document's cookie	1
+document.doctype	Returns the document's doctype	3
+document.documentElement	Returns the <html> element	3
+document.documentMode	Returns the mode used by the browser	3
+document.documentURI	Returns the URI of the document	3
+document.domain	Returns the domain name of the document server	1
+document.domConfig	Obsolete. Returns the DOM configuration	3
+document.embeds	Returns all <embed> elements	3
+document.forms	Returns all <form> elements	1
+document.head	Returns the <head> element	3
+document.images	Returns all <img> elements	1
+document.implementation	Returns the DOM implementation	3
+document.inputEncoding	Returns the document's encoding (character set)	3
+document.lastModified	Returns the date and time the document was updated	3
+document.links	Returns all <area> and <a> elements that have a href attribute	1
+document.readyState	Returns the (loading) status of the document	3
+document.referrer	Returns the URI of the referrer (the linking document)	1
+document.scripts	Returns all <script> elements	3
+document.strictErrorChecking	Returns if error checking is enforced	3
+document.title	Returns the <title> element	1
+document.URL	Returns the complete URL of the document
+]
+
+# animate
+setInterval
+clearInterval
+
+# 
