@@ -107,5 +107,27 @@ slideDown() // $(selector).slideDown(speed,callback); 천천히 or 빠르게 dro
 slideUp() // $(selector).slideUp(speed,callback); 천천히 or 빠르게 dropup함
 slideToggle() // slideDown + slideUp, $(selector).slideToggle(speed,callback);
 
+## animation
+$(selector).animate({params},speed,callback);
+- 선택자에 대해 params속성으로 speed의 속도로 바꾼다. 
+Pre-defined Value : 'show', 'hide', 'toggle'가 있다.
+height: 'toggle'이라고 하면 height가 접혔다가 펴졌다가 한다.
 
+## stop animation
+$(selector).stop(stopAll,goToEnd);
+
+# Get Content - text, html, val
+$(selector).text() : 선택자의 텍스트를 가져옴
+$(selector).html() : 선택자의 html 코드를 가져옴
+$(selector).val() : 선택자의 value값을 가져온다.
+
+# Get Attributes - attr
+$(selector).attr("속성이름ex(href)") : 선택자의 속성값을 가져옴
+
+# Set Content - text, html, val
+$(selector).text("내용") : 선택자의 텍스트를 바꾼다.
+$(selector).html("내용") : 선택자의 html 코드를 바꾼다.
+$(selector).val("내용") : 선택자의 value값을 바꾼다.
+
+# Add Elements - append, prepend, after, before
 
