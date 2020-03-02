@@ -1,2 +1,6 @@
 sublimetext html바로 실행하기
 https://krksap.tistory.com/696
+
+콘텐츠 가운데로 이동
+클래스 안에
+margin-left: auto; margin-right: auto;
