@@ -600,4 +600,55 @@ document.URL	Returns the complete URL of the document
 setInterval
 clearInterval
 
-# 
+# BOM (Browser Object Model)
+window객체는 모든 브라우저에 지원되고 브라우저의 창으로 나타난다.
+모든 자바스크립트의 객체, 함수, 변수들은 자동으로 윈도우 객체의 멤버가 된다.
+전역변수, 전역함수들은 윈도우객체의 속성, 메소드가 된다.
+문서 객체도 윈도우의 객체이다. (window.document.getElementById("header")) == (document.getElementById("header"))
+
+## window객체
+window.innerHeight : 브라우저 창의 내부 높이
+window.innerWidth : 브라우저 창의 내부 너비
+window.open() : 새로운 창 열기
+window.close() : 현재 창 닫기
+window.moveTo() : 현재 창으로 이동
+window.resizeTo() : 사이즈 재조정
+
+## window.screen객체
+window.screen.width : 방문자의 스크린 너비 픽셀
+window.screen.height : 방문자의 스크린 높이 픽셀
+window.screen.availWidth : 방문자의 사용가능한(최대 너비) 너비
+window.screen.availHeight : 방문자의 사용가능한(최대 높이) 높이
+window.screen.colorDepth : 디스플레이의 색상비트(24bit or 32bit) 반환
+window.screen.pixelDepth : 
+
+## window.location 객체
+window.location.href : 현재 페이지의 URL반환
+window.location.hostname : 웹 호스트의 도메인 이름을 반환
+window.location.pathname : 현재 페이지의 경로와 파일 이름을 반환한다. (C:\\이런식)
+window.location.protocol : 사용된 웹 프로토콜을 반환한다.
+window.location.port : 인터넷 호스트 포트를 반환한다.
+window.location.assign() : 새 문서 로드
+
+## window.history 객체
+- window. 의 접두사 없이 사용가능하다.
+history.back() : 브라우저의 뒤로가기 기능
+history.forward() : 브라우저의 앞으로가기 기능
+
+## window.navigator
+- window. 의 접두사 없이 사용가능하다.
+navigator.appName
+navigator.appCodeName
+navigator.platform
+navigator.cookieEnabled
+navigator.product
+navigator.appVersion
+navigator.userAgent
+navigator.language
+navigator.onLine
+
+## Timing Event
+setTimeout(function, milliseconds)
+setInterval(function, milliseconds)
+clearTimeout()
+clearInterval()
