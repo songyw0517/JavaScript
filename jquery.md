@@ -130,4 +130,16 @@ $(selector).html("내용") : 선택자의 html 코드를 바꾼다.
 $(selector).val("내용") : 선택자의 value값을 바꾼다.
 
 # Add Elements - append, prepend, after, before
+1. append() : $("p").append("Some appended text."); p태그의 마지막에 내용을 추가한다. 내용에는 html코드가 들어갈 수 있다.
+2. prepend() : $("p").prepend("Some prepended text."); p태그의 맨 앞에 내용을 추가한다.
+3. after() : $("img").after("Some text after"); img태그의 뒤에 내용 추가
+4. before() : $("img").before("Some text before"); img태그의 앞에 내용추가
+add) append와 after, prepend와 before의 차이는 태그의 내부에 추가되느냐(append, prepend), 태그 밖에 추가 되느냐(after, before)의 차이이다.
+
+# Remove
+1. remove() : $("#div1").remove(); div1아이디 삭제
+2. remove("선택자 지정가능") : $("#div1").remove(.test); div1의 test클래스만 삭제
+3. empty : $("#div1").empty(); div1의 내용 삭제
+
+# CSS Manipulating
 
