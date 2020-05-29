@@ -20,7 +20,8 @@ javaScript 공부
 	
 
 # 데이터 형
-Javascript의 데이터 형에는 크게 String, Number, Object로 구성된다.
+	> Javascript의 데이터 형에는 크게 String, Number, Object로 구성된다.
+	> Javascript의 데이터 형은 var밖에 없어서? 가진 값에 따라 타입이 달라진다.
 
 1. 문자형(String) : ""나 ''로 문자열의 값을 가지는 변수이다.
 	> var s = "javascript";
@@ -32,23 +33,38 @@ Javascript의 데이터 형에는 크게 String, Number, Object로 구성된다.
   
   
 2. 숫자형
-  > var s=100;
-  
-  > var t=Number("500"); //문자열500을 숫자로 변경
+	> var s=100;
+	> var t=Number("500"); //문자열500을 숫자로 변경
   
 3. 논리형(true, false)
-  > var s = true;
-  
-  > var t=10 > 100; // false 저장
-  
-  >var k = Boolean("Hello"); // true 저장
+	> var s = true;
+	> var t=10 > 100; // false 저장
+	> var k = Boolean("Hello"); // true 저장
   
 4. null & undefined 데이터
-  > var s; //undefined 데이터형
-  
-  > var t = Hello;
-  > var t = null; // t에 저장된 값을 비움
+	> var s; //undefined 데이터형
+	>
+	> var t = Hello;
+	> var t = null; // t에 저장된 값을 비움
+5. 배열
+	> var cars = ["Saab", "Volvo", "BMW"];
 
+6. 객체(Object)
+	> var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	
+# 추가
+var y = 123e5;      // 12300000
+var z = 123e-5;     // 0.00123
+var x = 34.00;	    // 34, 소수점 이하 필요없는 0은 출력안함
+var car;    // Value is undefined, type is undefined
+car = undefined;    // Value is undefined, type is undefined
+var car = "";    // The value is "", the typeof is "string"
+
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+person = null;    // Now value is null, but type is still an object // 값은 NULL이지만, 타입은 여전히 object이다.
+
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+person = undefined;   // Now both value and type is undefined // 둘다 undefined가 된다.
 # 연산자
 1. 산술연산 : +, -, *, **, /, %, ++, --
 2. 할당 : =, +=, -=, *=, /=, %=, **=
@@ -68,6 +84,11 @@ Javascript의 데이터 형에는 크게 String, Number, Object로 구성된다.
 5. 논리연산 : &&, ||, !
 6. 타입연산 : typeof, instanceof
 7. bitwise연산 : &, |, ~, ^, <<, >>, >>>
+
+
+
+
+
 
 3장(제어문)
 -----------
