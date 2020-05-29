@@ -53,18 +53,20 @@ javaScript 공부
 	> var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
 	
 # 추가
-var y = 123e5;      // 12300000
-var z = 123e-5;     // 0.00123
-var x = 34.00;	    // 34, 소수점 이하 필요없는 0은 출력안함
-var car;    // Value is undefined, type is undefined
-car = undefined;    // Value is undefined, type is undefined
-var car = "";    // The value is "", the typeof is "string"
-
-var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
-person = null;    // Now value is null, but type is still an object // 값은 NULL이지만, 타입은 여전히 object이다.
-
-var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
-person = undefined;   // Now both value and type is undefined // 둘다 undefined가 된다.
+	> var y = 123e5;      // 12300000
+	> var z = 123e-5;     // 0.00123
+	> var x = 34.00;	    // 34, 소수점 이하 필요없는 0은 출력안함
+	> var car;    // Value is undefined, type is undefined
+	> car = undefined;    // Value is undefined, type is undefined
+	> var car = "";    // The value is "", the typeof is "string"
+	> 
+	> var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	> person = null;    // Now value is null, but type is still an object // 값은 NULL이지만, 타입은 여전히 object이다.
+	> 
+	> var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+	> person = undefined;   // Now both value and type is undefined // 둘다 undefined가 된다.
+	> 
+	
 # 연산자
 1. 산술연산 : +, -, *, **, /, %, ++, --
 2. 할당 : =, +=, -=, *=, /=, %=, **=
@@ -85,29 +87,31 @@ person = undefined;   // Now both value and type is undefined // 둘다 undefine
 6. 타입연산 : typeof, instanceof
 7. bitwise연산 : &, |, ~, ^, <<, >>, >>>
 
+# 함수 (function)
+	> function name(parameter1, parameter2, parameter3){
+	//code
+	}
 
-
-
-
-
-3장(제어문)
------------
-- 조건문
-  - if/else/else if
-- 선택문
-  - switch
-- 반복문
-  - while/for
-
-C언어와 같다
-
-4장(객체)
----------
+# 객체
+	> 하나의 변수에 여러개의 속성 및 메소드를 갖고 있는 데이터 타입이다.
+	>
+	> var person = {
+  	firstName: "John",
+	lastName : "Doe",
+	id       : 5566,
+	fullName : function() {
+		return this.firstName + " " + this.lastName;
+		}
+	};
+	> person 의 속성 : firstName, lastName, id
+	> person 의 메소드 : fullName()
 # 객체 사용법
   - 객체.메소드();   //메소드 실행
   - 객체.속성;       //속성 가져옴
   - 객체.속성=값;    //속성 바꿈
-  
+
+
+
 # 객체 종류
   - 내장 객체
     - 문자, 날짜, 배열, 수학 객체 등
@@ -121,34 +125,4 @@ C언어와 같다
     
   - 문서 객체 모델 (DOM, Document Object Model)
     HTML문서 구조를 말함,
-# 객체 생성
-참조 변수 = new 생성함수() //java, python 객체 생성과 같다
-cf) 생성하는 문법이 조금 다르다!
-```javascript
-var tv=new Object();
-tv.color="white";
-tv.price=30000;
-tv.info=function(){
-	document.write("tv색상 : "+this.color,"<br>");
-	document.write("tv가격 : "+this.price,"<br>");
-}
-
-var car={
-	color:"black",
-	price:50000,
-	info:function(){
-		document.write("tv색상 : "+this.color,"<br>");
-		document.write("tv가격 : "+this.price,"<br>");
-	}
-};
-
-
-
-document.write("<h1>tv 객체 메서드 호출</h1>");
-tv.info();
-document.write("<h1>car 객체 메서드 호출</h1>");
-car.info();
-```
-  
-# confirm객체
-# location.href = "주소" //주소로 이동
+    
