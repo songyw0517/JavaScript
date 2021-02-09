@@ -261,151 +261,262 @@ document.getElementById('demo').style.display = 'block';
 - 유형 : type, instanceof
 - 비트 : &, |, ~, ^, <<, >>, >>>
 
+# JavaScript 데이터 타입
+- undefined
+- Number
+- String
+- Booleans
+- Arrays
+- Objects
+  ``` javascript
+    var person = {
+      firstName:"John", 
+      lastName:"Doe", age:50,
+      eyeColor:"blue"};
 
-
-
-
+    NULL 은 JavaScript에서 객체이다.
+    따라서 typeof NULL은 object를 반환한다. 
+  ```
+- Function
 
 
 # 함수 (function)
-=================
-## 1.
+``` javascript
+기본형 : 
+
 function [함수이름] ([파라미터]){
   [함수 내용]
 }
 
+예제1)
 function myFunction() {
   document.getElementById("demo").innerHTML = "Paragraph changed.";
 }
+예제2)
+function myFunction(p1, p2){
+  return p1 * p2;
+}
 
-## 2.
+생략형 :
+
 [변수 이름] = ([인자]) => {
    [함수 내용]
 }
 
+예제1)
 hello = () => {
   return "Hello World!";
 }
 
 로 더욱 간단하게 할 수 있다., 한줄일 경우 중괄호 안써도 된다.
 
-## 3.
+변수형 : 
+
 var [함수 이름] = new Function(인자, 인자, 반환 값)
+
+예제1)
 var myFunction = new Function("a", "b", "return a * b");
 
+예제2)
 var [함수이름] = function (a, b) {return a * b};
 var x = myFunction(4, 3);
 
 - 함수이름을 출력하면, 함수내용이 출력된다.
-```
+
+
 function toCelsius(f) {
   return (5/9) * (f-32);
 }
-document.getElementById("demo").innerHTML = toCelsius;
+document.getElementById("demo").innerHTML = toCelsius; // 함수의 이름을 넣으면
 
 >>> function toCelsius(f) { return (5/9) * (f-32); } 출력됨
 ```
 
 - 함수를 리턴하면(return this;) object window가 반환되며, use strict;를 사용할 경우, undefined가 반환된다.
 
-- 함수 자동 호출
+- 함수 자동 호출 : 웹 페이지를 로드하면서 자동으로 함수를 호출한다.
+``` javascript
+
 (function () {
   document.getElementById("demo").innerHTML = "Hello! I called myself";
 })();
 
-
-
+```
 
 # 객체
-var person = {name:"song", age:"??", height:"??"};
-cf) = 이 아니다. : 임
+  ``` javascript
+  var person = {name:"song", age:"??", height:"??"};
+  ```
+- cf) = 이 아니다. : 임
 
-속성접근 : person.name
+- 속성 접근 : 
+  - 방법 1)
+  objectName.propertyName
+  ``` javascript
+  var person = {name:"song", age:"??", height:"??"};
+  document.getElementByID('demo').innerHTML = person.name // song 출력
+  ```
+  - 방법 2)
+  objectName['propertyName']
+  ``` javascript
+  document.getElementById("demo").innerHTML =
+  person["firstName"] + " " + person["lastName"];
+  ```
+- 함수 호출
+  objectName.methodName()
+  ``` javascript
+  document.getElementById("demo").innerHTML = person.fullName();
+  ```
 
 # 이벤트
+## HTML의 주된 이벤트
+- HTML 웹 페이지 로딩이 끝난 이벤트
+- HTML의 input 필드가 바뀐 이벤트
+- HTML의 버튼이 클릭 된 이벤트
+``` HTML
+HTML에서는 특정 javascript를 event속성으로 지정할 수 있다.
 <element event='some JavaScript'>
--> <button onclick="함수이름 or 함수 내용">
+이때의 javascript는 실행시킬 함수를 의미한다.
+
+ex1) event가 onclick일 때
+<button onclick="함수이름 or 함수 내용">
+
+ex2) 버튼을 누르면 'demo'요소에 시간을 출력
+<button onclick="document.getElementById('demo').innerHTML = 
+Date()">The time is?</button>
+```
+
 여러가지 이벤트 : https://www.w3schools.com/jsref/dom_obj_event.asp
 
-# 이벤트 리스너
-
-
-
 # 문자열 함수
+``` javascript
 var text="This is Practice Text."
-
-문자열 길이 : text.length;
- 
-문자열 중 단어 찾기
-indexOf(찾을 단어, [검색 시작 위치]) : text.indexOf("is"); -> 5 반환, 못 찾을경우 -1
-lastIndexOf(찾을 단어, [검색 시작 위치]) : text.lastIndexOf("is"); -> 5반환 but 중복될 경우 뒤에있는 단어가 선택된다. , 못 찾을경우 -1
-search(찾을 단어): text.search("is"); -> 5반환
-
-## indexOf()와 search()와의 차이점
-search는 두번째 매개변수를 갖지 못함, indexOf는 정규식을 사용할 수 없음
-
-문자열 부분 추출
-slice(start, end) : text.slice(5,7) -> is 반환, 5 ~ 6까지 반환, 음수도 가능 
-substring(start, end) : slice와 같지만 음수 사용 불가
-substr(start, length) : text.substr(5, 2) -> is반환, 인덱스5부터 2개 문자 추출
-
-문자열 내용 변경
-replace(찾을 단어, 바꿀 단어); -> text.replace("is", "are"); -> var text="this are Practice Text."
-찾을 단어의 서식문자
-  /IS/i : IS의 대소문자 구별없이 찾음
-  /is/g : 중복되는 is를 모두 선택함
-  
-대문자, 소문자 변환
-toUpperCase() : 대문자로 변경, text.toUpperCase(); -> 모두 대문자로
-toLowerCase() : 소문자로 변경, text.toLowerCase(); -> 모두 소문자로
-
-문자열 조인
-concat(넣을 문자열, 합칠 문자열)
 ```
-var text1 = "Hello";
-var text2 = "World";
-var text3 = text1.concat(" ", text2);
-
->>> Hello World
+## [문자열 길이]
+``` javascript
+text.length; // 문자열 길이 반환
 ```
-
-공백 제거
-- trim()
+## [단어 찾기]
+- indexOf(찾을 단어, [검색 시작 위치]) :
+  ``` javascript
+  text.indexOf("is"); //-> 5 반환, 못 찾을경우 -1   
+  ```
+- lastIndexOf(찾을 단어, [검색 시작 위치]) : 
+  ``` javascript
+  text.lastIndexOf("is"); // -> 5반환 뒤에서부터 단어를 찾음 못 찾을경우 -1
+  ```
+- search(찾을 단어): 
+  ``` javascript
+  text.search("is"); //-> 5반환
+  ```
+## [문자열 부분 추출]
+- slice(start, end) : 
+  ``` javascript
+  text.slice(5,7) // -> is 반환, 5 ~ 6까지 반환, 음수도 가능 
+  ```
+- substring(start, end) : 
+  ``` javascript
+  text.substring(5,7) // -> is반환 slice와 같지만 음수 사용 불가
+  ```
+- substr(start, length) : 
+  ``` javascript
+  text.substr(5, 2) // -> is반환, 인덱스5부터 2개 문자 추출
+  ```
+## [문자열 내용 변경]
+- replace(찾을 단어(정규식 가능), 바꿀 단어); 
+  - [찾을 단어]의 서식문자 (정규식)
+    - /IS/i : IS의 대소문자 구별없이 찾음
+    - /is/g : 중복되는 is를 모두 선택함
+  ``` javascript
+  text.replace("is", "are"); // -> var text="this are Practice Text."
+  ```
 - 정규식
-```
-str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')
-```
+  ``` javascript
+  str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')
+  ```
 - String.prototype 사용
+  ``` javascript
+  if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+      return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+    };
+  }
+  ```
+## [대문자, 소문자 변환]
+- toUpperCase() : 대문자로 변경, 
+``` javascript
+  text.toUpperCase(); // -> 모두 대문자로 변경
 ```
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-  };
-}
-var str = "     Hello World!    ";
-alert(str.trim());
-```
+- toLowerCase() : 소문자로 변경, 
+  ``` javascript
+  text.toLowerCase(); // -> 모두 소문자로 변경
+  ```
 
-문자 추출
-charAt(position index) : 해당 인덱스에 있는 문자 추출
-charCodeAt(position) : 해당 인덱스에 있는 문자의 유니코드 추출
-Property access [ ] : 배열로 접근
 
-문자열을 배열로 변환
-split("나눌 기준 문자") : 문자열을 파라미터를 기준으로 나누어 배열에 저장함
 
-```
-function myFunction() {
-  var str = "a,b,c,d,e,f";
-  var arr = str.split(",");
-  document.getElementById("demo").innerHTML = arr[0];
-  
-  >>> arr=[a,b,c,d,e,f];
-}
-```
+## [문자열 조인] : 두개 이상의 문자열을 합친다.
+- concat(넣을 문자열, 합칠 문자열)
+  ``` javascript
+  var text1 = "Hello";
+  var text2 = "World";
+  var text3 = text1.concat(" ", text2);
 
-기타 문자열 메소드
-https://www.w3schools.com/jsref/jsref_obj_string.asp
+  >>> Hello World
+  ```
+
+## [공백 제거]
+- trim()
+  ``` javascript
+    var str = "       Hello World!        "; // 공백 제거
+    alert(str.trim());
+
+    >> Hello World 알람
+  ```
+## JavaScript String 패딩 (2017부터 적용)
+- padStart(자릿수, 채울 문자)
+  ``` javascript
+    let str = "5";
+    str = str.padStart(4,'ㅇ');
+
+    // ㅇㅇㅇ5 출력
+  ```
+- padEnd(자릿수, 채울 문자)
+  ``` javascript 
+    let str = "5";
+    str = str.padEnd(4,'t');
+
+    //5ttt 출력
+  ```
+
+## String 문자 추출
+- charAt(position) : position의 문자를 추출
+  ``` javascript
+    var str = "HELLO WORLD";
+    str.charAt(0);            // returns H
+  ```
+
+- charCodeAt(position) : position의 문자의 아스키 코드 넘버를 추출
+  ``` javascript
+    var str = "HELLO WORLD";
+    str.charCodeAt(0);         // returns 72
+  ```
+- Property access [ ]
+  ``` javascript
+    var str = "HELLO WORLD";
+    str[0];                   // returns H
+  ```
+## String을 Array로 바꾸기
+- split('구분할 문자') : 구분할 문자로 나누어 배열에 담음
+  ``` javascript
+    var txt = "a,b,c,d,e";   // String
+    var arr = txt.split(",");          // Split on commas
+    document.getElementById("demo").innerHTML = arr[0];
+
+    // a 출력
+  ```
+
+
+[기타 문자열 메소드](https://www.w3schools.com/jsref/jsref_obj_string.asp)
 
 # 숫자
 - 자바스크립트는 int, short, long, float, double등의 타입을 정하지 않는다. 
@@ -413,45 +524,112 @@ https://www.w3schools.com/jsref/jsref_obj_string.asp
 - 소수점 아래의 0은 표시되지 않는다.
 
 # 숫자 메소드
-문자열로 변경 : toString();
+## 문자열로 변경 : 
+- toString();
+  ``` javascript
+    var x = 123;
+    x.toString();            // returns 123 from variable x
+    (123).toString();        // returns 123 from literal 123
+    (100 + 23).toString();   // returns 123 from expression 100 + 23
+  ```
 
-소수점 아래 어디까지 표현 : toExponential("자리수") ->
-```
-var x = 9.656;
-x.toExponential(2);     // returns 9.66e+0
-x.toExponential(4);     // returns 9.6560e+0
-x.toExponential(6);     // returns 9.656000e+0
-```
 
-숫자를 문자열로 표현, 소수점 아래부터 반올림해서 보여줌 : toFixed("소수점 아래 어디까지?")
-숫자를 지정된 길이로 표현함 : toPrecision("몇자리까지 표현")
+## 소수점 아래 어디까지 표현 : 
+- toExponential("자리수");
+  ``` javascript
+  var x = 9.656;
+  x.toExponential(2);     // returns 9.66e+0
+  x.toExponential(4);     // returns 9.6560e+0
+  x.toExponential(6);     // returns 9.656000e+0
+  ```
+- toPrecision("자리수");
+  ``` javascript
+  var x = 9.656;
+  x.toPrecision();        // returns 9.656
+  x.toPrecision(2);       // returns 9.7
+  x.toPrecision(4);       // returns 9.656
+  x.toPrecision(6);       // returns 9.65600
+  ```
+## 반올림
+- toFixed('반올림할 자리') : String 반환, 소수점 아래부터 반올림
+  ``` javascript
+  var x = 9.656;
+  x.toFixed(0);           // returns 10
+  x.toFixed(2);           // returns 9.66
+  x.toFixed(4);           // returns 9.6560
+  x.toFixed(6);           // returns 9.656000
+  ```
 
-변수를 숫자로 변경
-The Number() method
-The parseInt() method
-The parseFloat() method
+## 변수를 숫자로 변경
+- The <b>Number()</b> method
+- The <b>parseInt()</b> method
+- The <b>parseFloat()</b> method
 
-숫자 예약어
-NaN : 유효한 숫자가 아님을 나타냄, 숫자를 문자열로 나누면 출력됨
+## 숫자 예약어
+- NaN : 유효한 숫자가 아님을 나타냄, 숫자를 문자열로 나누면 출력됨
 - isNaN("변수") : NaN일경우 true 출력
- Infinity or -Infinity : 자바스크립트가 리턴 가능한 최대, 최소 값이다. 
-MAX_VALUE : 최대값
-MIN_VALUE : 최솟값
+- Infinity or -Infinity : 자바스크립트가 리턴 가능한 최대, 최소 값이다. 
+- MAX_VALUE : 최대값
+- MIN_VALUE : 최솟값
 
-# 배열
-배열.length : 배열의 길이 반환
-배열의 마지막 값 : 배열[배열.length -1]
-배열 마지막에 추가 : 배열.push("값") | 배열[배열.length] = 값 | 배열[원하는곳] = 값
+# 배열 메소드
+- Array<b>.length</b> : 배열의 길이 반환
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.length // return 4
+  ```
+- Array<b>.isArray(배열)</b> : 배열인지 확인
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  Array.isArray(fruits);   // returns true
+  ```
+- Array<b>.toString()</b> : 배열을 문자열로 바꿈 (콤마도 들어간다)
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.toString() // return "Banana,Orange,Apple,Mango"
+  ```
+- Array<b>.join("묶을때 사용할 문자")</b> : 배열을 문자로 묶어서 문자열로 만든다.
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.join('*'); // return "Banana * Orange * Apple * Mango"
+  ```
+- Array<b>.pop()</b> : 배열의 마지막 값 반환 & 삭제
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.pop() // return "Mango" and delete
+  ```
+- Array<b>.push("값")</b> : 배열의 마지막에 값 추가
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.push("Melon") // return 5 and fruits = ["Banana", "Orange", "Apple", "Mango", "Melon"]
+  document.getElementById("demo").innerHTML = fruits; // Banana, Orange, Apple,Mango,Melon 출력
+  ```
+- Array<b>.shift()</b> : 배열의 첫번째 값을 반환하고, 삭제함
+    ``` javascript
+    var fruits = ["Banana", "Orange", "Apple", "Mango"];
+    fruits.shift() // return "Banana" and delete
+    ```
+- Array<b>.unshift()</b> : 배열의 첫번째에 값을 추가함
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.unshift("Lemon"); // 'Lemon'을 배열의 첫번째에 추가 
+  ```
+- Array<b>.splice(first_index, number of remove element, new elements)</b>
+  : first_index로부터 number of remove element를 삭제하고 거기에 new elements를 삽입함
+  ``` javascript
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.splice(2,0,"lemon", "kiwi")
 
-함수
-Array.isArray(배열) : 배열이 배열인지 확인
-배열.toString(); : 배열을 문자열로 바꿈 (콤마도 들어간다)
-배열.join("묶을때 사용할 문자") : 배열을 문자로 묶어서 문자열로 만든다.
-배열.pop() : 배열의 마지막 값 반환 & 삭제
-배열.push("값") : 배열의 마지막에 값 추가
-배열.shift() : 배열의 첫번째 값을 반환하고, 삭제함
-배열.unshift() : 배열의 첫번째에 값을 추가함
-배열.splice(2,0,"lemon", "kiwi") : 배열 2인덱스부터 lemon과 kiwi 값을 중간에 추가한다. (0은 삭제할 요소가 없다는 뜻이다. 1이면 그 요소를 삭제하여 반환한다.)
+  /*
+  인덱스 2부터 0개 원소를 삭제
+  "lemon", "kiwi"원소를 삽입
+  */
+
+  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.splice(2,1)
+
+  // 인덱스 2부터 1개 원소를 삭제
+  ```
 
 splice함수 : 배열의 중간 요소를 없앨때 유용한 함수이다.
 splice(0, 1) : 배열[0]에서부터 1개를 삭제하고 배열을 연결한다.
