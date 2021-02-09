@@ -1,28 +1,270 @@
-# document.getElementById
-==========================
-document.getElementById("myH").innerHTML = "Hello World!"; // html요소 중 id값이 myH인 요소를 찾아서 Hello World!로 변경해라<br>
-document.getElementById("myImg").src="pic_bulcon.gif"; // html요소중 id값이 myImg인 요소를 찾아서 src를 pic_bulcon.gif로 변경해라<br>
-즉, document.getElementById("[ID이름]").[변경할 속성] = [변경할 내용]으로 변경할 수 있다.<br>
-그러나 스타일 변경의 경우는 document.getElementById('demo')<b>.style.fontSize='35px</b>' 으로 지정해야한다.<br>
+# JAVASCRIPT
 
-# 출력
-======
-1. innerHTML 사용 (위와 같다)
-2. document.write () 사용
-  document.write ([내용])
-3. window.alert () 사용
-  window.alert ([내용]) // 알람으로 알려줌
-4.  console.log () 사용
-  console.log([내용])
+## document.getElementById
+<br>
 
-# 연산자
-산술 : +, -, *, **, /, %, ++, --
-할당 : =, +=, -=, *=, /=, %=, **=
-문자열 : +, +=, 하나라도 문자열이 들어가면 숫자도 문자열로 계산됨
-비교 : ==, ===, !=, !==, >, <, >=, <=, ? // ==은 값 비교, ===은 타입도 비교함, 1=="1"은 true고 1==="1"은 false임
-논리 : &&, ||, !
-유형 : type, instanceof
-비트 : &, |, ~, ^, <<, >>, >>>
+``` javascript
+기본형 : document.getElementById("[ID이름]").['변경할 속성'] = ['변경할 내용']
+스타일변경 : document.getElementById("[ID이름]").style.['스타일 속성'] = ["변경할 값"] 
+
+document.getElementById("demo").innerHTML = "Hello JavaScript";
+/* html 요소 중 id='demo'인 요소에 'Hello JavaScript'로 변경 */
+
+document.getElementById("myImg").src="pic_bulcon.gif"; 
+/* html 요소 중 id값이 myImg인 요소를 찾아서 src를 pic_bulcon.gif로 변경 */
+
+document.getElementById('demo').style.fontSize='35px;
+/* html 요소 중 id값이 demo인 요소를 찾아서 fontsize를 35px로 변경*/
+
+document.getElementById('demo').style.display = 'none';
+/* html 요소 중 id값이 demo인 요소를 찾아서 display를 none으로 변경 -> hide 기능 */
+
+document.getElementById('demo').style.display = 'block';
+/* html 요소 중 id값이 demo인 요소를 찾아서 display를 block으로 변경 -> show 기능 */
+```
+
+# \<script\> 태그
+- 위치
+  - \<head\> or \<body\>에 있는 경우 : \<body\>의 어느 곳에서든 호출이 가능하다.
+    ``` html
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <script>
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "Paragraph changed.";
+    }
+    </script>
+    </head>
+    <body>
+
+    <h1>A Web Page</h1>
+    <p id="demo">A Paragraph</p>
+    <button type="button" onclick="myFunction()">Try it</button>
+    <button type="button" onclick="myFunction()">Try second it</button>
+
+    <!-- <body>안에 넣을 경우 body의 모든 요소의 아래에 넣는 것이 속도면에서 좋다.
+    <script>
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "Paragraph changed.";
+    }
+    </script>
+    -->
+    </body>
+    </html>
+    ```
+    위의 경우 Try it, Try second it 둘다 myFunction()이 호출이 된다.
+  - External (외부 파일로 첨부) : 
+    ``` javascript
+    function myFunction() {
+    document.getElementById("demo").innerHTML = "Paragraph changed.";
+    }
+    ```
+    위와 같은 myScript.js파일이 존재하는 경우
+    ``` html
+    <script src="myScript.js"></script>
+    ```
+    위의 코드를 \<head\>나 \<body\>에 넣어서 javascript를 적용시킬 수 있다.
+    
+    ### External로 js를 첨부할 때의 이점
+    - HTML코드와 분리할 수 있다.
+    - HTML, JavaScript 코드를 읽기 쉽게하여 유지보수에 이점이 있음
+    - JavaScript를 캐쉬하면, 속도면에서 이점이 있음
+
+  - External References : 'full URL'이나 '현재 웹 페이지에서 js로의 상대 경로'를 지정하여 사용 할 수 있다.
+    ``` html
+    <script src="https://www.w3schools.com/js/myScript.js"></script>
+    <!-- Full URL로 지정하는 경우 -->
+
+    <script src="/js/myScript1.js"></script>
+    <!-- 현재 웹페이지가 있는 폴더로부터 js가 있는 상대경로로 지정하는 경우 -->
+
+    <script src="myScript1.js"></script>
+    <!-- 현재 웹페이지가 있는 폴더에 js가 같이 있는 경우 -->
+    ```
+
+
+# JavaScript Output
+1. innerHTML 사용 
+    ``` javascript
+      document.getElementById("demo").innerHTML = 5 + 6;  
+    ```
+2. document.write () 사용 
+    ``` javascript 
+      document.write("hello world") 
+      - 얘는 모든 HTML을 삭제하고, write한 것을 추가해서 다시 로드함 (속도가 느리다.)
+    ```
+    
+3. window.alert () 사용 : 알람으로 알려 줌 
+    ``` javascript
+      window.alert("hello") 
+      alert('hello')로 window를 생략할 수 있음
+    ```
+4.  console.log () 사용 : 콘솔에 알려 줌
+    ``` javascript
+      console.log(5+6)
+    ```
+
+# JavaScript Statement
+- JavaScript는 Values, Operators, Expressions, Keywords, Comments 로 구성되어 있음
+- 세미콜론 써야 함
+- 80자 이내로 작성하는 것이 읽기에 좋다.
+  ``` javascript
+    document.getElementById("demo").innerHTML =
+    "Hello Dolly!"; /* 일부로 줄을 바꿈*/
+  ```
+
+# JavaScript Nmaing
+- 첫번째 글자는 문자, _, $로 시작 함
+- 나머지는 문자, 숫자, _, $가 들어갈 수 있다.
+- Case sensitive : 대소문자를 구분한다.
+- Camel Case : FirstName (Upper Camel Case) / firstName (Lower Camel Case)
+
+# Scope와 let
+- JavaScript도 C와 같이 전역변수, 지역변수의 개념이 존재하는 것 같다.
+  ``` javascript
+    var carName = "Volvo"; // carName은 전역변수이므로
+    // carName 사용가능
+    function myFunction() {
+      // carName 사용가능
+    }
+    /*-------------------------------------------------*/
+    
+    // carName이 선언되지 않았으므로 사용불가
+
+    function myFunction() {
+      var carName = "Volvo"; // myFunction() 안에서만 사용가능한 지역변수 carName
+      // carName 사용가능
+    }
+
+    // carName은 myFunction의 지역변수이므로 사용불가
+    /*-------------------------------------------------*/
+    {
+      var x = 2;
+      /*
+      그런데 이렇게 선언하는 경우는 전역변수로 처리한다.
+      왜냐하면 var은 Block Scope의 영향을 받지 않기 때문이다.
+      -> 이때 x를 지역변수로 바꾸려면 let을 사용하면 된다.
+      */
+    }
+    // x는 var로 선언되어 전역변수로 처리, 따라서 x 사용가능
+
+    /*-------------------------------------------------*/
+    {
+      let x = 2;
+      /*
+      let으로 선언되어 block의 지역변수로 적용된다.
+      */
+    }
+    // x는 let으로 선언되어 지역변수로 처리, 따라서 x 사용불가
+  ```
+- let은 선언이 된 이후에 다시 정의할 수 없다.
+  ``` javascript
+    var x = 2;       // Allowed
+    let x = 3;       // Not allowed
+
+    {
+      var x = 4;   // Allowed
+      let x = 5   // Not allowed
+    }
+    /*-------------------------------------------------*/
+    let x = 2;       // Allowed
+    let x = 3;       // Not allowed
+
+    {
+      let x = 4;   // Allowed
+      let x = 5;   // Not allowed
+    }
+    /*-------------------------------------------------*/
+    let x = 2;       // Allowed
+    var x = 3;       // Not allowed
+
+    {
+      let x = 4;   // Allowed
+      var x = 5;   // Not allowed
+    }
+    /*-------------------------------------------------*/
+    let x = 2;       // Allowed
+
+    {
+      let x = 3;   // Allowed
+    }
+
+    {
+      let x = 4;   // Allowed
+    }
+
+  ```
+# JavaScript와 Hoisting
+- JavaScript의 Hoisting : 변수를 정의하는 모든 코드를 코드의 맨 위로 올려주는 기능이다.
+  ``` JAVASCRIPT
+  x = 5; // Assign 5 to x
+
+  elem = document.getElementById("demo"); // Find an element
+  elem.innerHTML = x;                     // Display x in the element
+
+  var x; // Declare x -> Hoisting으로 인해 코드의 맨위로 이동한다.
+
+  /// 위의 코드는 아래의 코드와 같다.
+
+  var x; // Declare x
+  x = 5; // Assign 5 to x
+
+  elem = document.getElementById("demo"); // Find an element
+  elem.innerHTML = x;                     // Display x in the element
+  ```
+# let과 const
+- 둘 다 
+  - block Scope로 적용
+  - 변수를 선언한 후에 값을 할당해야 함. // 반대로 적용시 tdz 에러 발생
+  - Hoising 됨
+  - 재선언 불가
+  - 선언시 초기화 되지 않음
+- let : 
+  - 재할당 가능
+- const:
+  - 재할당 불가
+  - 만약 배열인 경우 변형이 가능하다.
+    ``` javascript
+    const cars = ["Saab", "Volvo", "BMW"];
+
+    // You can change an element:
+    cars[0] = "Toyota";
+
+    // You can add an element:
+    cars.push("Audi");
+    ```
+
+# JavaScript Loop
+  ``` javascript
+  var i = 5;
+  for (var i = 0; i < 10; i++) {
+    // some statements
+  }
+  // Here i is 10
+  /*-------------------------------------------------*/
+  let i = 5;
+  for (let i = 0; i < 10; i++) { // let을 사용하는 경우
+    // some statements
+  }
+  // Here i is 5
+
+  ```
+# JavaScript 연산자
+- 산술 : +, -, *, **, /, %, ++, --
+- 할당 : =, +=, -=, *=, /=, %=, **=
+- 문자열 : +, +=, 하나라도 문자열이 들어가면 숫자도 문자열로 계산됨
+- 비교 : ==, ===, !=, !==, >, <, >=, <=, ? 
+  - ==은 값 비교, ===은 타입도 비교함,
+  - > 1=="1"은 true고 1==="1"은 false임
+- 논리 : &&, ||, !
+- 유형 : type, instanceof
+- 비트 : &, |, ~, ^, <<, >>, >>>
+
+
+
+
+
 
 
 # 함수 (function)
